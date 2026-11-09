@@ -177,3 +177,9 @@ p { margin: 0; }
 .page h2 { font-size: 28px; margin: 36px 0 12px; }
 .page p, .page li { color: var(--muted); }
 .page p + p { margin-top: 14px; }
+
+@media (max-width: 400px) {
+  .site-header { flex-wrap: nowrap; gap: 12px; }
+  .logo { font-size: 19px; letter-spacing: 0.06em; white-space: nowrap; }
+  .site-nav .btn { padding: 0 16px; }
+}

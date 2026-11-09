@@ -1,0 +1,21 @@
+---
+interface Props { numeral: string; }
+const { numeral } = Astro.props;
+const flutes = [54, 63, 72, 81, 90, 99];
+---
+<svg viewBox="0 0 160 392" aria-hidden="true" focusable="false">
+  <rect x="12" y="0" width="136" height="9" fill="#1A1714" />
+  <rect x="24" y="9" width="112" height="15" rx="3" fill="#1A1714" />
+  <circle cx="28" cy="28" r="17" fill="#1A1714" /><circle cx="28" cy="28" r="11" fill="none" stroke="#F4ECDD" stroke-width="2.5" /><circle cx="28" cy="28" r="4.5" fill="#D9A441" />
+  <circle cx="132" cy="28" r="17" fill="#1A1714" /><circle cx="132" cy="28" r="11" fill="none" stroke="#F4ECDD" stroke-width="2.5" /><circle cx="132" cy="28" r="4.5" fill="#D9A441" />
+  <rect x="45" y="24" width="70" height="14" fill="#1A1714" />
+  <ellipse cx="58" cy="31" rx="5" ry="4" fill="#F4ECDD" /><ellipse cx="80" cy="31" rx="5" ry="4" fill="#F4ECDD" /><ellipse cx="102" cy="31" rx="5" ry="4" fill="#F4ECDD" />
+  <rect x="44" y="40" width="72" height="7" fill="#1A1714" />
+  <polygon points="47,47 113,47 117,336 43,336" fill="#1A1714" />
+  {flutes.map((x) => <line x1={x} y1="52" x2={x + (x - 80) * 0.06} y2="334" stroke="#4A433C" stroke-width="3" />)}
+  <rect x="36" y="336" width="88" height="11" rx="5.5" fill="#1A1714" />
+  <rect x="41" y="347" width="78" height="6" fill="#1A1714" />
+  <rect x="31" y="353" width="98" height="13" rx="6.5" fill="#1A1714" />
+  <rect x="22" y="366" width="116" height="26" fill="#1A1714" />
+  <text x="80" y="385" text-anchor="middle" font-family="Oswald, sans-serif" font-size="17" font-weight="700" letter-spacing="3" fill="#D9A441">{numeral}</text>
+</svg>

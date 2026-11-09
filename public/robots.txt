@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pillarmethodcoaching.com/sitemap-index.xml

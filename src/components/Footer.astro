@@ -1,0 +1,13 @@
+---
+import { SITE, SOCIAL } from '../config';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer wrap">
+  <div>© {year} {SITE.name}</div>
+  <nav aria-label="Social and legal">
+    <a href={SOCIAL.instagram} rel="me">Instagram</a>
+    <a href={SOCIAL.tiktok} rel="me">TikTok</a>
+    <a href={SOCIAL.youtube} rel="me">YouTube</a>
+    <a href="/privacy/">Privacy</a>
+  </nav>
+</footer>

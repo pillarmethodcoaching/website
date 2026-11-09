@@ -1,0 +1,145 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Pillar from '../components/Pillar.astro';
+import { OFFER, SOCIAL, APPLY_URL, KIT_FORM_ACTION } from '../config';
+import hero from '../assets/hero-cropped.jpg';
+import beforeAfter from '../assets/before-after-pool-cropped.jpg';
+import rustPolo from '../assets/06-rust-polo-walking.jpg';
+import plaid from '../assets/02-plaid-shirt-grey-wall.jpg';
+import whiteTee from '../assets/07-white-tee-brick-wall.jpg';
+
+const applyHref = APPLY_URL || SOCIAL.instagram;
+const applyReady = Boolean(APPLY_URL);
+---
+<Base
+  title="Pillar Method Coaching | Coaching for men: body, style and mind"
+  description={`A ${OFFER.weeks}-week coaching program for men 21 to 35: training, flexible dieting, style help and the inner work. ${OFFER.spots} founding spots at ${OFFER.price}.`}
+>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">Coaching for men 21 to 35</p>
+      <h1 id="hero-title">Become the man you want to be.</h1>
+      <p class="lead">A {OFFER.weeks}-week program for your body, your style and your mind. Authentic, whole and integrated, from a man who has walked the road himself.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#apply">Apply for a founding spot</a>
+        <a class="btn btn-ghost" href="#list">Join the list</a>
+      </div>
+      <p class="hero-meta">{OFFER.spots} founding spots · {OFFER.price} · {OFFER.weeks} weeks</p>
+    </div>
+    <div class="hero-photo">
+      <Image src={hero} width={1100} alt="Mitch in a black tee and dark denim, arms crossed, in front of a dark wall" widths={[480, 760, 1100]} sizes="(max-width: 860px) 100vw, 44vw" loading="eager" fetchpriority="high" />
+    </div>
+  </section>
+
+  <section id="program" class="pillars" aria-labelledby="pillars-title">
+    <div class="pillars-inner">
+      <h2 id="pillars-title">Three pillars.<br />One man.</h2>
+      <div class="temple" aria-hidden="true">
+        <div class="bar w2"></div>
+        <div class="frieze">The Pillar Method</div>
+        <div class="columns">
+          <Pillar numeral="I" />
+          <Pillar numeral="II" />
+          <Pillar numeral="III" />
+        </div>
+        <div class="bar w4"></div>
+        <div class="bar w2"></div>
+      </div>
+      <div class="pillar-text">
+        <div><h3>Physical</h3><p>Training, flexible dieting, and clothes that fit the body you are building.</p></div>
+        <div><h3>Mental</h3><p>Confidence that does not need anyone's approval, and the courage to stop hiding who you are.</p></div>
+        <div><h3>Spiritual</h3><p>Faith and purpose woven into the work, not bolted on at the end.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="story wrap" aria-labelledby="story-title">
+    <div class="story-copy">
+      <p class="eyebrow">My story</p>
+      <h2 id="story-title">I was you.<br />Here is what worked.</h2>
+      <p>I was the bigger kid. A teacher called me fat in high school. In 2011 I fell in love with the gym, and I have trained every year since. I went from 240 to 171 pounds for my first Men's Physique show in 2014, and competed again in 2015.</p>
+      <p>The harder work was inside. I am a recovering people-pleaser, and I found my way through therapy, a men's group, my faith and my marriage.</p>
+      <p>In January 2026 I started again at 249 pounds. By November I was down to 188. I am still doing the work, and I will walk you through yours.</p>
+    </div>
+    <div class="story-media">
+      <Image src={beforeAfter} width={900} alt="Mitch before and after his first transformation: at a pool, then lean and muscular" widths={[400, 640, 900]} sizes="(max-width: 860px) 100vw, 45vw" />
+      <div class="stats">
+        <div><strong>2011</strong><span>First year in the gym</span></div>
+        <div><strong>2×</strong><span>Men's Physique competitor</span></div>
+        <div><strong>−61 lb</strong><span>Year of Health, 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="style-strip wrap" aria-labelledby="style-title">
+    <div class="style-head">
+      <p class="eyebrow">Style</p>
+      <h2 id="style-title">Dress like the man you are becoming.</h2>
+      <p class="lead">Heritage menswear that fits your body and suits your life. No costume, no trend-chasing.</p>
+    </div>
+    <figure><Image src={rustPolo} width={560} alt="Mitch walking in a rust knit polo, raw denim and loafers" widths={[360, 560]} sizes="(max-width: 640px) 72vw, 30vw" /><figcaption>Knit polo, raw denim, loafers</figcaption></figure>
+    <figure><Image src={plaid} width={560} alt="Mitch in a plaid western shirt, black denim and boots" widths={[360, 560]} sizes="(max-width: 640px) 72vw, 30vw" /><figcaption>Western shirt, black denim, boots</figcaption></figure>
+    <figure><Image src={whiteTee} width={560} alt="Mitch in a white tee and light denim against a brick wall" widths={[360, 560]} sizes="(max-width: 640px) 72vw, 30vw" /><figcaption>White tee, light denim, boots</figcaption></figure>
+  </section>
+
+  <section class="includes" aria-labelledby="includes-title">
+    <div class="includes-inner">
+      <h2 id="includes-title">What the {OFFER.weeks} weeks include</h2>
+      <ul>
+        <li>Workout programs built for you</li>
+        <li>A flexible diet plan</li>
+        <li>One-on-one calls</li>
+        <li>Regular check-ins</li>
+        <li>Style help</li>
+        <li>A wardrobe assessment</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="steps wrap" aria-labelledby="steps-title">
+    <p class="eyebrow">How it works</p>
+    <h2 id="steps-title">Three simple steps.</h2>
+    <ol>
+      <li><h3>Apply</h3><p>Tell me where you are and where you want to go. It takes a few minutes.</p></li>
+      <li><h3>Talk</h3><p>We get on a call to see if we are a good fit. No pressure either way.</p></li>
+      <li><h3>Start</h3><p>You get your plan and we begin the {OFFER.weeks} weeks together.</p></li>
+    </ol>
+  </section>
+
+  <section id="apply" class="apply wrap" aria-labelledby="apply-title">
+    <div class="apply-copy">
+      <p class="eyebrow">Founding spots</p>
+      <h2 id="apply-title">Five men. Twelve weeks. {OFFER.price}.</h2>
+      <p>The founding price is for the first {OFFER.spots} clients only. Tell me where you are and where you want to go.</p>
+      {applyReady ? (
+        <a class="btn btn-primary" href={applyHref}>Apply for a founding spot</a>
+      ) : (
+        <>
+          <a class="btn btn-primary" href={applyHref}>Message me on Instagram</a>
+          <p class="note">The online application form is almost ready. Until then, send me a message on Instagram and say you want a founding spot.</p>
+        </>
+      )}
+    </div>
+    <div id="list" class="list-box">
+      <h3>Not ready yet?</h3>
+      {KIT_FORM_ACTION ? (
+        <form action={KIT_FORM_ACTION} method="post">
+          <p>Join the email list. Honest notes on training, style and faith.</p>
+          <label for="email">Your email</label>
+          <input id="email" name="email_address" type="email" autocomplete="email" required placeholder="you@example.com" />
+          <button type="submit">Join the list</button>
+        </form>
+      ) : (
+        <>
+          <p>The email list opens soon, with honest notes on training, style and faith. Until then, follow along here:</p>
+          <div class="follow">
+            <a class="btn btn-ghost" href={SOCIAL.instagram}>Instagram</a>
+            <a class="btn btn-ghost" href={SOCIAL.youtube}>YouTube</a>
+            <a class="btn btn-ghost" href={SOCIAL.tiktok}>TikTok</a>
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+</Base>

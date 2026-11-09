@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, SOCIAL } from '../config';
+---
+<Base title="Privacy | Pillar Method Coaching" description="How Pillar Method Coaching handles your information.">
+  <div class="page">
+    <p class="eyebrow">Privacy</p>
+    <h1>Your privacy</h1>
+    <p>Last updated November 2026.</p>
+    <h2>What this site collects</h2>
+    <p>This website does not use advertising cookies or tracking. It does not ask for any information unless you choose to apply for coaching or join the email list.</p>
+    <h2>When you apply or join the list</h2>
+    <p>If you fill in the application or join the email list, I receive what you type, such as your name, your email address and your answers. I use it only to reply to you, to coach you, and to send the emails you signed up for. I never sell it or share it for marketing.</p>
+    <p>The application form and the email list run on outside services, which store your answers for me under their own privacy policies.</p>
+    <h2>Leaving the list or removing your data</h2>
+    <p>Every email has an unsubscribe link. To have your information deleted, message me and I will remove it.</p>
+    <h2>Contact</h2>
+    <p>{SITE.name}, run by {SITE.founder}. The quickest way to reach me is a message on <a href={SOCIAL.instagram}>Instagram</a>.</p>
+  </div>
+</Base>

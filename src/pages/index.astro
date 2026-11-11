@@ -24,7 +24,7 @@ const applyReady = Boolean(APPLY_URL);
       <p class="lead">A {OFFER.weeks}-week program for your body, your style and your mind. Authentic, whole and integrated, from a man who has walked the road himself.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#apply">Apply for a founding spot</a>
-        <a class="btn btn-ghost" href="#list">Join the list</a>
+        <a class="btn btn-ghost" href="#list">Free style guide</a>
       </div>
       <p class="hero-meta">{OFFER.spots} founding spots · {OFFER.price} · {OFFER.weeks} weeks</p>
     </div>
@@ -139,10 +139,11 @@ const applyReady = Boolean(APPLY_URL);
       <h3>Not ready yet?</h3>
       {KIT_FORM_ACTION ? (
         <form action={KIT_FORM_ACTION} method="post">
-          <p>Join the email list. Honest notes on training, style and faith.</p>
+          <p>Get my free style guide, <strong>Your First 10 Pieces</strong>: the 10 clothes every man should own, how they should fit and how to wear them together. Plus honest notes on training, style and faith.</p>
           <label for="email">Your email</label>
           <input id="email" name="email_address" type="email" autocomplete="email" required placeholder="you@example.com" />
-          <button type="submit">Join the list</button>
+          <button type="submit">Send me the free guide</button>
+          <p class="note">Check your inbox (and spam folder) for a confirmation email. Confirm, and the guide is yours.</p>
         </form>
       ) : (
         <>

@@ -78,7 +78,7 @@ p { margin: 0; }
   .hero-photo { order: -1; position: relative; margin: 0 calc(var(--pad) * -1); }
   .hero-photo img { height: 58vh; min-height: 340px; max-height: 480px; object-position: 50% 40%; }
   .hero-photo::after { content: ""; position: absolute; inset: auto 0 0 0; height: 45%; background: linear-gradient(rgba(26,23,20,0), var(--ink)); }
-  .hero-copy { margin-top: -72px; position: relative; padding-bottom: 0; gap: 16px; }
+  .hero-copy { margin-top: -72px; position: relative; z-index: 1; padding-bottom: 0; gap: 16px; }
   .hero-actions .btn { flex: 1 1 100%; }
 }
 

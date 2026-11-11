@@ -18,9 +18,9 @@ export const SOCIAL = {
   youtube: 'https://www.youtube.com/@goose_fitness',
 };
 
-// Not set up yet. Leave empty until the tools exist; the site shows an
-// honest fallback while these are empty.
-// APPLY_URL: the Tally application form link.
-export const APPLY_URL = '';
+// Leave a link empty until its tool exists; the site shows an honest
+// fallback while it is empty.
+// APPLY_URL: the Tally application form link (live 2026-11-11).
+export const APPLY_URL = 'https://tally.so/r/RWM0gp';
 // KIT_FORM_ACTION: the form "action" address from Kit's embed code.
 export const KIT_FORM_ACTION = '';

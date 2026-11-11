@@ -22,5 +22,6 @@ export const SOCIAL = {
 // fallback while it is empty.
 // APPLY_URL: the Tally application form link (live 2026-11-11).
 export const APPLY_URL = 'https://tally.so/r/RWM0gp';
-// KIT_FORM_ACTION: the form "action" address from Kit's embed code.
-export const KIT_FORM_ACTION = '';
+// KIT_FORM_ACTION: the form "action" address from Kit's embed code
+// (Kit form "Website email list", live 2026-11-11, double opt-in).
+export const KIT_FORM_ACTION = 'https://app.kit.com/forms/10176198/subscriptions';

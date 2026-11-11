@@ -159,6 +159,7 @@ p { margin: 0; }
 .list-box { border: 2px solid var(--line); padding: clamp(24px, 3vw, 32px); display: flex; flex-direction: column; gap: 12px; }
 .list-box h3 { font-size: 32px; }
 .list-box p { color: var(--muted); }
+.list-box form { display: flex; flex-direction: column; gap: 12px; }
 .list-box label { font-weight: 600; font-size: 15px; }
 .list-box input { min-height: 48px; padding: 0 14px; border: 0; background: var(--cream); color: var(--ink); font: inherit; }
 .list-box button { min-height: 48px; background: var(--cream); color: var(--ink); border: 0; font: inherit; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; }

@@ -1,0 +1,192 @@
+---
+import Base from '../layouts/Base.astro';
+import { OFFER, APPLY_URL, KIT_FORM_ACTION, SOCIAL } from '../config';
+
+// The 30 statements, in the order he sees them (from the approved quiz doc).
+// p = pillar: M = Mental, P = Physical, S = Spiritual.
+const questions = [
+  { p: 'M', t: "I hide my real feelings and opinions from my wife or girlfriend to keep the peace." },
+  { p: 'P', t: "I skip workouts when life gets busy." },
+  { p: 'S', t: "I'm not sure what I believe, or I don't live by what I say I believe." },
+  { p: 'M', t: "At work, I keep my opinions to myself so I don't rock the boat or risk my job." },
+  { p: 'P', t: "I don't really know how much I eat in a day." },
+  { p: 'S', t: "I don't have a clear sense of purpose for my life." },
+  { p: 'M', t: "With friends and family, I stay quiet so we don't end up arguing." },
+  { p: 'P', t: "I eat to cope with stress, boredom or my emotions." },
+  { p: 'S', t: "I don't have men in my life who know the real me." },
+  { p: 'M', t: "I say yes when I mean no, and then I resent it later." },
+  { p: 'P', t: "I avoid mirrors, photos or taking my shirt off." },
+  { p: 'S', t: "I rarely make time to be still: prayer, reflection or quiet." },
+  { p: 'M', t: "I need someone else's approval before I make a decision." },
+  { p: 'P', t: "My clothes don't fit the body I have right now." },
+  { p: 'S', t: "My daily habits don't match the man I say I want to be." },
+  { p: 'M', t: "After a conversation, I replay it and worry about what they thought of me." },
+  { p: 'P', t: "I wear whatever is clean instead of choosing what I put on." },
+  { p: 'S', t: "I feel distant from God, or from what matters most to me." },
+  { p: 'M', t: "When I make a mistake, I beat myself up about it for days." },
+  { p: 'P', t: "I feel underdressed or out of place at work, on dates or at events." },
+  { p: 'S', t: "I grab my phone in quiet moments so I don't have to think." },
+  { p: 'M', t: "I walk into a room hoping nobody notices me." },
+  { p: 'P', t: "I run out of energy before the day is over." },
+  { p: 'S', t: "The man people see in public isn't the man I am at home." },
+  { p: 'M', t: "I avoid hard conversations, even when something needs to be said." },
+  { p: 'P', t: "I sleep less than 7 hours most nights." },
+  { p: 'S', t: "I chase what other people call success instead of what I believe matters." },
+  { p: 'M', t: "I act like a different person depending on who I'm around." },
+  { p: 'P', t: "I start a fitness plan and quit within a few weeks." },
+  { p: 'S', t: "When life gets hard, I have nothing deeper to lean on." },
+];
+
+const results = {
+  P: {
+    name: 'Physical',
+    text: "You might know what you want, but your body and your clothes aren't backing you up yet. That's the most visible pillar, and the good news is it responds fastest to consistent work. I was 249 lb in January 2026. Small, boring habits got me to 188.",
+    steps: [
+      'Pick 3 days and train. Write them in your calendar like appointments.',
+      'Track what you eat for 3 days. No changes yet, just look at it honestly.',
+      "Pull out the clothes that don't fit you today. Wear what fits the body you have now.",
+    ],
+  },
+  M: {
+    name: 'Mental',
+    text: "You might be the guy people call a good guy. But you say yes when you mean no, you keep your opinions to yourself, and you care more about what others think than what you want. I call it Good Guy Syndrome, and I had it for years. It's not a personality. It's a habit, and habits can change.",
+    steps: [
+      "Say no to one thing you'd normally say yes to out of guilt.",
+      "Share one honest opinion you'd usually keep to yourself.",
+      'Write down one thing you want, just for you, and take one step toward it.',
+    ],
+  },
+  S: {
+    name: 'Spiritual',
+    text: "You might be putting in the work, but you're not sure what it's for. Without a clear why and men around you who know the real you, it's hard to keep going when motivation runs out. For me, faith, a men's group and my marriage are what keep the rest standing.",
+    steps: [
+      'Take 10 quiet minutes each morning: prayer, reflection or just sitting still.',
+      'Write one sentence about the man you want to be in a year.',
+      'Reach out to one man you respect and ask him to get coffee.',
+    ],
+  },
+};
+const scale = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'];
+const applyHref = APPLY_URL || SOCIAL.instagram;
+---
+<Base
+  title="The Authentic Man Assessment | Pillar Method Coaching"
+  description="A free 6-minute quiz for men: which of your 3 pillars (Physical, Mental, Spiritual) is holding you back? 30 honest statements, one result, three first steps."
+>
+  <section class="quiz wrap" aria-labelledby="quiz-title">
+    <div id="quiz-start" class="quiz-start">
+      <p class="eyebrow">Free quiz · about 6 minutes</p>
+      <h1 id="quiz-title">The Authentic Man Assessment</h1>
+      <p class="lead">Which of your 3 pillars is holding you back: Physical, Mental or Spiritual? 30 statements, one result, and three first steps you can take this week.</p>
+      <p class="quiz-intro">Answer honestly. Nobody sees this but you. For each one, how often is it true for you, from 1 (never) to 5 (always)?</p>
+      <button id="quiz-begin" class="btn btn-primary" type="button" hidden>Start the quiz</button>
+      <noscript><p class="note">The quiz needs JavaScript turned on in your browser to work out your result.</p></noscript>
+    </div>
+
+    <div id="quiz-run" class="quiz-run" hidden>
+      <div class="quiz-progress" aria-hidden="true"><span id="quiz-bar"></span></div>
+      <p class="quiz-count" id="quiz-count" aria-live="polite"></p>
+      <fieldset class="quiz-q">
+        <legend id="quiz-text"></legend>
+        <div class="quiz-scale" role="radiogroup" aria-labelledby="quiz-text">
+          {scale.map((label, i) => (
+            <button type="button" class="quiz-opt" data-v={i + 1} role="radio" aria-checked="false">
+              <strong>{i + 1}</strong><span>{label}</span>
+            </button>
+          ))}
+        </div>
+      </fieldset>
+      <button id="quiz-back" class="quiz-back" type="button">← Back</button>
+    </div>
+
+    <div id="quiz-result" class="quiz-result" hidden tabindex="-1">
+      <p class="eyebrow">Your result</p>
+      <h2 id="result-title"></h2>
+      <div class="quiz-bars" id="result-bars"></div>
+      <p id="result-text"></p>
+      <h3>Your first steps this week</h3>
+      <ol id="result-steps"></ol>
+
+      <div class="quiz-invite">
+        <h3>Want help with all three?</h3>
+        <p>I'm taking {OFFER.spots} founding clients for my {OFFER.weeks}-week coaching program.</p>
+        <a class="btn btn-primary" href={applyHref}>Apply for a founding spot</a>
+      </div>
+
+      {KIT_FORM_ACTION && (
+        <div class="list-box quiz-list">
+          <h3>Not ready yet?</h3>
+          <form action={KIT_FORM_ACTION} method="post">
+            <p>Get my free style guide, <strong>Your First 10 Pieces</strong>: the 10 clothes every man should own, how they should fit and how to wear them together.</p>
+            <label for="quiz-email">Your email</label>
+            <input id="quiz-email" name="email_address" type="email" autocomplete="email" required placeholder="you@example.com" />
+            <button type="submit">Send me the free guide</button>
+            <p class="note">Check your inbox (and spam folder) for a confirmation email. Confirm, and the guide is yours.</p>
+          </form>
+        </div>
+      )}
+      <button id="quiz-again" class="quiz-back" type="button">Take the quiz again</button>
+    </div>
+  </section>
+
+  <script type="application/json" id="quiz-data" set:html={JSON.stringify({ questions, results })}></script>
+  <script>
+    const data = JSON.parse(document.getElementById('quiz-data')!.textContent || '{}');
+    const qs: { p: string; t: string }[] = data.questions;
+    const res: Record<string, { name: string; text: string; steps: string[] }> = data.results;
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const start = $('quiz-start'), run = $('quiz-run'), result = $('quiz-result');
+    const opts = Array.from(document.querySelectorAll<HTMLButtonElement>('.quiz-opt'));
+    const answers: number[] = [];
+    let i = 0;
+
+    const show = () => {
+      $('quiz-text').textContent = qs[i].t;
+      $('quiz-count').textContent = `Statement ${i + 1} of ${qs.length}`;
+      $('quiz-bar').style.width = `${(i / qs.length) * 100}%`;
+      opts.forEach((o) => o.setAttribute('aria-checked', String(Number(o.dataset.v) === answers[i])));
+      ($('quiz-back') as HTMLButtonElement).hidden = i === 0;
+    };
+
+    const finish = () => {
+      const totals: Record<string, number> = { M: 0, P: 0, S: 0 };
+      qs.forEach((q, n) => { totals[q.p] += answers[n]; });
+      // Highest score = biggest struggle. Ties go Mental, then Physical, then Spiritual.
+      const order = ['M', 'P', 'S'];
+      const top = order.reduce((best, k) => (totals[k] > totals[best] ? k : best), 'M');
+      const r = res[top];
+      $('result-title').textContent = `${r.name} is holding you back`;
+      $('result-text').textContent = r.text;
+      $('result-steps').innerHTML = '';
+      r.steps.forEach((s) => { const li = document.createElement('li'); li.textContent = s; $('result-steps').appendChild(li); });
+      $('result-bars').innerHTML = '';
+      order.forEach((k) => {
+        const row = document.createElement('div');
+        row.className = 'quiz-barrow' + (k === top ? ' is-top' : '');
+        const pct = ((totals[k] - 10) / 40) * 100;
+        row.innerHTML = `<span class="lbl">${res[k].name}</span><span class="track"><span class="fill" style="width:${Math.max(pct, 2)}%"></span></span><span class="num">${totals[k]}/50</span>`;
+        $('result-bars').appendChild(row);
+      });
+      run.hidden = true;
+      result.hidden = false;
+      result.focus();
+      window.scrollTo({ top: 0 });
+    };
+
+    opts.forEach((o) => o.addEventListener('click', () => {
+      answers[i] = Number(o.dataset.v);
+      opts.forEach((x) => x.setAttribute('aria-checked', String(x === o)));
+      setTimeout(() => {
+        if (i < qs.length - 1) { i++; show(); opts[0].focus({ preventScroll: true }); } else { finish(); }
+      }, 180);
+    }));
+    $('quiz-back').addEventListener('click', () => { if (i > 0) { i--; show(); } });
+    $('quiz-begin').addEventListener('click', () => {
+      start.hidden = true; run.hidden = false; i = 0; answers.length = 0; show(); opts[0].focus();
+    });
+    $('quiz-again').addEventListener('click', () => {
+      result.hidden = true; start.hidden = false; window.scrollTo({ top: 0 });
+    });
+    ($('quiz-begin') as HTMLButtonElement).hidden = false;
+  </script>
+</Base>

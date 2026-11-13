@@ -11,8 +11,8 @@ import { SITE, SOCIAL } from '../config';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-interface Props { title: string; description: string; noindex?: boolean; }
-const { title, description, noindex = false } = Astro.props;
+interface Props { title: string; description: string; noindex?: boolean; clientBar?: boolean; }
+const { title, description, noindex = false, clientBar = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const share = await getImage({ src: shareSrc, width: 1200, height: 630, format: 'jpg' });
 const shareUrl = new URL(share.src, Astro.site).href;
@@ -52,6 +52,14 @@ const ld = {
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  {clientBar && (
+    <aside class="client-bar" aria-label="For current clients">
+      <div class="client-bar-inner wrap">
+        <p>Already working with me?</p>
+        <a class="btn btn-gold" href="https://tally.so/r/9N947Y" target="_blank" rel="noopener">Clients: Share Your Story <span aria-hidden="true">→</span></a>
+      </div>
+    </aside>
+  )}
   <Header />
   <main id="main">
     <slot />

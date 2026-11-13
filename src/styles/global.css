@@ -59,11 +59,11 @@ p { margin: 0; }
 
 /* Client bar (front page, top) */
 .client-bar { background: #2A2520; border-bottom: 1px solid var(--line); }
-.client-bar-inner { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: center; padding-top: 14px; padding-bottom: 14px; }
-.client-bar p { color: var(--cream); font-weight: 600; font-size: 17px; }
-.btn-gold { background: var(--gold); color: var(--ink); font-size: 17px; min-height: 52px; padding: 14px 30px; gap: 10px; }
+.client-bar-inner { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: center; padding-top: 10px; padding-bottom: 10px; }
+.client-bar p { color: var(--cream); font-weight: 600; font-size: 15px; }
+.btn-gold { background: var(--gold); color: var(--ink); font-size: 14px; min-height: 44px; padding: 10px 20px; gap: 8px; }
 .btn-gold:hover { background: var(--cream); color: var(--ink); }
-@media (max-width: 520px) { .client-bar .btn-gold { flex: 1 1 100%; font-size: 15px; padding: 14px 16px; letter-spacing: 0.04em; } .client-bar p { font-size: 16px; } }
+@media (max-width: 520px) { .client-bar p { font-size: 14px; } .client-bar .btn-gold { font-size: 13px; padding: 10px 16px; letter-spacing: 0.04em; } }
 
 /* Header */
 .site-header { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; justify-content: space-between; padding-top: 20px; padding-bottom: 20px; }

@@ -14,7 +14,6 @@ const applyHref = APPLY_URL || SOCIAL.instagram;
 const applyReady = Boolean(APPLY_URL);
 ---
 <Base
-  clientBar
   title="Pillar Method Coaching | Coaching for men: body, style and mind"
   description={`A ${OFFER.weeks}-week coaching program for men: training, flexible dieting, style help and the inner work. ${OFFER.spots} founding spots at ${OFFER.price}.`}
 >
@@ -28,6 +27,7 @@ const applyReady = Boolean(APPLY_URL);
         <a class="btn btn-ghost" href="#list">Free style guide</a>
       </div>
       <p class="hero-meta">{OFFER.spots} founding spots · {OFFER.price} · {OFFER.weeks} weeks</p>
+      <p class="hero-client">Already working with me? <a class="btn btn-gold" href="https://tally.so/r/9N947Y" target="_blank" rel="noopener">Clients: Share Your Story <span aria-hidden="true">→</span></a></p>
     </div>
     <div class="hero-photo">
       <Image src={hero} width={1100} alt="Mitch in a black tee and dark denim, arms crossed, in front of a dark wall" widths={[480, 760, 1100]} sizes="(max-width: 860px) 100vw, 44vw" loading="eager" fetchpriority="high" />

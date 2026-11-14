@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import { AMAZON_TAG, APPLY_URL } from '../config';
+
+// The 10 pieces from "Your First 10 Pieces". Each `search` is an Amazon
+// search; to point a piece at one exact product instead, set `url` to the
+// product link copied from Amazon's SiteStripe ("Get link" > "Text").
+type Piece = { n: string; name: string; why: string; search: string; url?: string };
+const pieces: Piece[] = [
+  { n: '01', name: 'Heavyweight white tee', why: 'The foundation of everything else. Thick cotton holds its shape.', search: 'mens heavyweight white t-shirt cotton' },
+  { n: '02', name: 'Piqué cotton polo', why: 'A step up from a tee. Works with jeans, chinos or under a jacket.', search: 'mens pique cotton polo shirt' },
+  { n: '03', name: 'Light blue oxford button-down', why: 'Goes with jeans, chinos and the suit. Tucked or untucked.', search: 'mens light blue oxford button down shirt' },
+  { n: '04', name: 'Flannel work shirt', why: 'The heritage everyday shirt, and your one pattern.', search: 'mens flannel work shirt' },
+  { n: '05', name: 'Dark selvedge denim jeans', why: 'Straight leg, dark wash. Goes with everything on the list.', search: 'mens dark selvedge denim jeans straight' },
+  { n: '06', name: 'Brown or olive chinos', why: 'The "nicer than jeans" pants for church, dinner or the office.', search: 'mens straight fit chinos olive' },
+  { n: '07', name: 'Brown leather boot', why: 'A cap-toe lace-up or a Chelsea boot. Built to last for years.', search: 'mens brown leather boots cap toe' },
+  { n: '08', name: 'Brown leather belt', why: 'Ties your boots and your outfit together.', search: 'mens brown full grain leather belt' },
+  { n: '09', name: 'Navy or charcoal suit', why: 'For weddings, interviews and the days that matter.', search: 'mens navy suit slim fit' },
+  { n: '10', name: 'Denim jacket or chore coat', why: 'Rugged outerwear with Americana roots. Over any top here.', search: 'mens chore coat canvas' },
+];
+const link = (p: Piece) => p.url ?? `https://www.amazon.com/s?k=${encodeURIComponent(p.search)}&tag=${AMAZON_TAG}`;
+---
+<Base title="Shop the Style Guide | Pillar Method Coaching" description="The 10 pieces from Mitch's free style guide, Your First 10 Pieces, with links to shop each one.">
+  <div class="page shop">
+    <p class="eyebrow">Your First 10 Pieces</p>
+    <h1>Shop the style guide.</h1>
+    <p>Every piece from the guide in one place. Check the fit rules in the guide before you buy: a cheap piece that fits beats an expensive one that doesn't.</p>
+    <p class="disclosure">As an Amazon Associate I earn from qualifying purchases. It costs you nothing extra.</p>
+
+    <ol class="shop-list">
+      {pieces.map((p) => (
+        <li class="shop-item">
+          <span class="shop-n" aria-hidden="true">{p.n}</span>
+          <div class="shop-body">
+            <h2>{p.name}</h2>
+            <p>{p.why}</p>
+          </div>
+          <a class="btn btn-primary" href={link(p)} target="_blank" rel="sponsored nofollow noopener">Shop on Amazon <span class="sr-only">: {p.name}</span></a>
+        </li>
+      ))}
+    </ol>
+
+    <p style="margin-top:40px">Don't have the guide yet? <a href="/#list">Get it free</a>. Want help with fitness and style together? <a href={APPLY_URL}>Apply for a founding spot</a>.</p>
+  </div>
+</Base>
+
+<style>
+  .shop .disclosure { font-size: 14px; color: var(--muted-2); border-left: 3px solid var(--gold); padding-left: 12px; margin-top: 20px; }
+  .shop-list { list-style: none; padding: 0; margin: 36px 0 0; display: grid; gap: 14px; }
+  .shop-item { display: grid; grid-template-columns: auto 1fr auto; gap: 16px 20px; align-items: center; background: var(--ink-2); border: 1px solid var(--line); padding: 20px; }
+  .shop-n { font-family: var(--display); font-weight: 700; font-size: 32px; color: var(--gold); min-width: 2ch; }
+  .shop-item h2 { font-size: 22px; margin: 0 0 4px; }
+  .shop-item p { margin: 0; font-size: 15px; }
+  .shop-item .btn { white-space: nowrap; min-height: 44px; padding: 0 20px; font-size: 15px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media (max-width: 640px) {
+    .shop-item { grid-template-columns: auto 1fr; }
+    .shop-item .btn { grid-column: 1 / -1; justify-content: center; }
+  }
+</style>

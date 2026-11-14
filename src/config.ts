@@ -18,6 +18,11 @@ export const SOCIAL = {
   youtube: 'https://www.youtube.com/@goose_fitness',
 };
 
+// Amazon Associates store ID (signed up 2026-11-13). Every Amazon link
+// on the site must carry this tag. Amazon's rules forbid these links
+// inside the PDF guide itself, so the PDF links to /shop/ instead.
+export const AMAZON_TAG = 'pillarmethod-20';
+
 // Leave a link empty until its tool exists; the site shows an honest
 // fallback while it is empty.
 // APPLY_URL: the Tally application form link (live 2026-11-11).

@@ -1,0 +1,131 @@
+---
+import Base from '../layouts/Base.astro';
+import { AMAZON_TAG, APPLY_URL } from '../config';
+
+// Mitch's reading list (sent 2026-11-14). Each `why` line is a short,
+// plain description of the book; swap in Mitch's own words any time.
+// Each link is an Amazon search with the store tag; to point a book at
+// one exact edition, set `url` to the product link from SiteStripe.
+type Book = { title: string; author: string; why: string; url?: string };
+type Group = { name: string; books: Book[] };
+
+const groups: Group[] = [
+  {
+    name: 'Mindset & Discipline',
+    books: [
+      { title: "Can't Hurt Me", author: 'David Goggins', why: 'His life story and the mental toughness he built out of it.' },
+      { title: 'Endure', author: 'Cameron Hanes', why: 'Discipline, daily hard work and outlasting your own doubt.' },
+      { title: 'The War of Art', author: 'Steven Pressfield', why: 'Names the force that keeps you from doing your work, and how to beat it.' },
+      { title: 'Turning Pro', author: 'Steven Pressfield', why: 'The follow-up: dropping amateur habits and showing up like a professional.' },
+      { title: 'Essentialism', author: 'Greg McKeown', why: 'Do less, but better. Cut what does not matter.' },
+      { title: 'Mastery', author: 'Robert Greene', why: 'How masters through history built their skill over years of practice.' },
+      { title: 'Principles', author: 'Ray Dalio', why: 'Clear rules for life and work, written down so they can be tested.' },
+      { title: 'The Greatness Mindset', author: 'Lewis Howes', why: 'Clearing out fear and doubt so you can go after your purpose.' },
+      { title: 'A Changed Mind', author: 'David Bayer', why: 'How to spot the beliefs holding you back and actually change them.' },
+      { title: 'Breaking the Habit of Being Yourself', author: 'Joe Dispenza', why: 'Retraining the thought habits that keep you stuck.' },
+      { title: 'Think and Grow Rich', author: 'Napoleon Hill', why: 'The classic on desire, belief and persistence.' },
+    ],
+  },
+  {
+    name: 'Masculinity & Relationships',
+    books: [
+      { title: 'No More Mr. Nice Guy', author: 'Robert Glover', why: 'Why trying to please everyone backfires, and how to stop.' },
+      { title: 'The Big Stick', author: 'Tony Endelman & Robert Glover', why: "Glover's teaching collected into a practical guide for dating, work and life." },
+      { title: 'Dating Essentials for Men', author: 'Robert Glover', why: 'A straightforward guide to dating with confidence.' },
+      { title: "Men's Work", author: 'Connor Beaton', why: 'A self-guided path for facing your patterns instead of running from them.' },
+      { title: 'The Way of the Superior Man', author: 'David Deida', why: 'Purpose, presence and masculine energy in relationships.' },
+      { title: 'The Way of Men', author: 'Jack Donovan', why: 'What being a man has meant across history.' },
+      { title: 'Iron John', author: 'Robert Bly', why: 'An old fairy tale retold as a map of how boys become men.' },
+      { title: 'The Rational Male', author: 'Rollo Tomassi', why: 'A blunt take on attraction and how modern dating works.' },
+      { title: '5 Types of People Who Can Ruin Your Life', author: 'Bill Eddy', why: 'How to spot high-conflict people early and protect yourself.' },
+    ],
+  },
+  {
+    name: 'Purpose & Faith',
+    books: [
+      { title: 'Mere Christianity', author: 'C.S. Lewis', why: 'The core of the Christian faith, laid out plainly.' },
+      { title: 'The Purpose Driven Life', author: 'Rick Warren', why: 'A 40-day walk through the question of what you are here for.' },
+      { title: 'The Alchemist', author: 'Paulo Coelho', why: 'A short novel about a shepherd who follows his dream.' },
+      { title: "What's Your Dream?", author: 'Simon Squibb', why: 'Finding your dream and building a life and business around it.' },
+      { title: 'Ask!', author: 'Mark Victor Hansen & Crystal Dwyer Hansen', why: 'How asking for what you want moves your life forward.' },
+      { title: 'I Could Do Anything If I Only Knew What It Was', author: 'Barbara Sher', why: 'A guide to figuring out what you actually want.' },
+      { title: 'The Happiness of Pursuit', author: 'Chris Guillebeau', why: 'How taking on a big personal quest gives life direction.' },
+    ],
+  },
+  {
+    name: 'Money & Business',
+    books: [
+      { title: 'Rich Dad Poor Dad', author: 'Robert Kiyosaki', why: 'Two father figures, two opposite lessons about money and work.' },
+      { title: 'The Intelligent Investor', author: 'Benjamin Graham', why: 'The classic on patient, value-based investing.' },
+      { title: 'The 4-Hour Workweek', author: 'Tim Ferriss', why: 'Cutting busywork and building income that does not need all your hours.' },
+      { title: 'The $100 Startup', author: 'Chris Guillebeau', why: 'People who started businesses on very little money, and how they did it.' },
+      { title: 'The 48 Laws of Power', author: 'Robert Greene', why: 'How power has been won and lost through history.' },
+    ],
+  },
+  {
+    name: 'Body & Style',
+    books: [
+      { title: 'The 4-Hour Body', author: 'Tim Ferriss', why: 'Experiments in fat loss, strength and sleep.' },
+      { title: 'The Appearance of Power', author: 'Tanner Guzy', why: 'How the way a man dresses tells the world who he is.' },
+    ],
+  },
+];
+
+const count = groups.reduce((n, g) => n + g.books.length, 0);
+const link = (b: Book) =>
+  b.url ?? `https://www.amazon.com/s?k=${encodeURIComponent(`${b.title} ${b.author}`)}&i=stripbooks&tag=${AMAZON_TAG}`;
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+---
+<Base title="Favorite Books | Pillar Method Coaching" description={`Mitch Gooslin's ${count} favorite books on mindset, masculinity, purpose, money, body and style.`}>
+  <div class="page books">
+    <p class="eyebrow">Reading list</p>
+    <h1>Favorite books.</h1>
+    <p>The books behind The Pillar Method: {count} reads on mindset, being a man, purpose, money, body and style.</p>
+    <p class="disclosure">As an Amazon Associate I earn from qualifying purchases. It costs you nothing extra.</p>
+
+    <nav class="books-jump" aria-label="Book sections">
+      {groups.map((g) => <a href={`#${slug(g.name)}`}>{g.name}</a>)}
+    </nav>
+
+    {groups.map((g) => (
+      <section class="books-group" id={slug(g.name)}>
+        <h2>{g.name}</h2>
+        <ul class="books-list">
+          {g.books.map((b) => (
+            <li class="book">
+              <div class="book-body">
+                <h3>{b.title}</h3>
+                <p class="book-author">{b.author}</p>
+                <p>{b.why}</p>
+              </div>
+              <a class="btn btn-ghost" href={link(b)} target="_blank" rel="sponsored nofollow noopener">Find on Amazon <span class="sr-only">: {b.title}</span></a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <p style="margin-top:48px">Reading is a start. Want help putting it into practice with your body, style and mind? <a href={APPLY_URL}>Apply for a founding spot</a>.</p>
+  </div>
+</Base>
+
+<style>
+  .books .disclosure { font-size: 14px; color: var(--muted-2); border-left: 3px solid var(--gold); padding-left: 12px; margin-top: 20px; }
+  .books-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .books-jump a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--line); color: var(--cream); text-decoration: none; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .books-jump a:hover { border-color: var(--gold); color: var(--gold); }
+  .books-group { scroll-margin-top: 20px; }
+  .books-group h2 { color: var(--gold); margin-top: 48px; }
+  .books-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .book { display: grid; grid-template-columns: 1fr auto; gap: 14px 20px; align-items: center; background: var(--ink-2); border: 1px solid var(--line); padding: 18px 20px; }
+  .book h3 { font-family: var(--display); font-size: 22px; margin: 0; color: var(--cream); }
+  .book .book-author { margin: 2px 0 6px; font-size: 14px; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.06em; }
+  .book p { margin: 0; font-size: 15px; }
+  .book .book-author + p { margin-top: 0; }
+  .book .btn { white-space: nowrap; min-height: 44px; padding: 0 18px; font-size: 14px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media (max-width: 640px) {
+    .book { grid-template-columns: 1fr; }
+    .book .btn { justify-content: center; }
+  }
+</style>

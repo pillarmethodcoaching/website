@@ -138,10 +138,14 @@ p { margin: 0; }
 .temple .bar.w2 { margin: 0 2%; }
 .temple .bar.w4 { margin: 0 4%; }
 .temple .frieze { background: var(--ink); color: var(--gold); margin: 0 4%; padding: 10px 0; text-align: center; font-family: var(--display); font-weight: 700; font-size: clamp(12px, 1.6vw, 18px); letter-spacing: 0.4em; text-transform: uppercase; }
+.temple .foundation { background: var(--ink); color: var(--gold); margin: 0 2%; padding: 12px 0; text-align: center; font-family: var(--display); font-weight: 700; font-size: clamp(12px, 1.6vw, 18px); letter-spacing: 0.4em; text-transform: uppercase; border-top: 3px solid var(--cream); }
 .temple .columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4%; padding: 0 6%; }
 .temple svg { width: 100%; max-width: 170px; height: auto; display: block; margin: 0 auto; }
 .pillar-text { margin-top: 36px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding: 0 2%; text-align: center; }
 .pillar-text p { color: var(--body-on-cream); margin-top: 8px; }
+.foundation-text { margin: 40px auto 0; max-width: 640px; text-align: center; padding-top: 32px; border-top: 2px solid var(--ink); }
+.foundation-text .eyebrow { color: var(--rust); margin-bottom: 8px; }
+.foundation-text p:last-child { color: var(--body-on-cream); margin-top: 8px; }
 .pillar-quiz { margin: 48px auto 0; max-width: 620px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; border-top: 2px solid var(--ink); padding-top: 40px; }
 .pillar-quiz-q { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; }
 .pillar-quiz p:not(.pillar-quiz-q) { color: var(--body-on-cream); }

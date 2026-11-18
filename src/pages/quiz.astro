@@ -2,8 +2,8 @@
 import Base from '../layouts/Base.astro';
 import { OFFER, APPLY_URL, KIT_FORM_ACTION, SOCIAL } from '../config';
 
-// The 30 statements, in the order he sees them (from the approved quiz doc).
-// p = pillar: M = Mental, P = Physical, S = Spiritual.
+// The 35 statements, in the order he sees them (from the approved quiz doc, plus 5 Brotherhood ones added 2026-11-17).
+// p = pillar: M = Mental, P = Physical, S = Spiritual, B = Brotherhood (the foundation).
 const questions = [
   { p: 'M', t: "I hide my real feelings and opinions from my wife or girlfriend to keep the peace." },
   { p: 'P', t: "I skip workouts when life gets busy." },
@@ -11,30 +11,35 @@ const questions = [
   { p: 'M', t: "At work, I keep my opinions to myself so I don't rock the boat or risk my job." },
   { p: 'P', t: "I don't really know how much I eat in a day." },
   { p: 'S', t: "I don't have a clear sense of purpose for my life." },
+  { p: 'B', t: "I don't have a man I could call at 2 a.m. if my life fell apart." },
   { p: 'M', t: "With friends and family, I stay quiet so we don't end up arguing." },
   { p: 'P', t: "I eat to cope with stress, boredom or my emotions." },
   { p: 'S', t: "I don't have men in my life who know the real me." },
   { p: 'M', t: "I say yes when I mean no, and then I resent it later." },
   { p: 'P', t: "I avoid mirrors, photos or taking my shirt off." },
   { p: 'S', t: "I rarely make time to be still: prayer, reflection or quiet." },
+  { p: 'B', t: "When I'm struggling, I handle it alone instead of telling anyone." },
   { p: 'M', t: "I need someone else's approval before I make a decision." },
   { p: 'P', t: "My clothes don't fit the body I have right now." },
   { p: 'S', t: "My daily habits don't match the man I say I want to be." },
   { p: 'M', t: "After a conversation, I replay it and worry about what they thought of me." },
   { p: 'P', t: "I wear whatever is clean instead of choosing what I put on." },
   { p: 'S', t: "I feel distant from God, or from what matters most to me." },
+  { p: 'B', t: "My friendships stay on the surface: sports, work and jokes, never what's really going on." },
   { p: 'M', t: "When I make a mistake, I beat myself up about it for days." },
   { p: 'P', t: "I feel underdressed or out of place at work, on dates or at events." },
   { p: 'S', t: "I grab my phone in quiet moments so I don't have to think." },
   { p: 'M', t: "I walk into a room hoping nobody notices me." },
   { p: 'P', t: "I run out of energy before the day is over." },
   { p: 'S', t: "The man people see in public isn't the man I am at home." },
+  { p: 'B', t: "When I'm stressed, I pull away from the people closest to me." },
   { p: 'M', t: "I avoid hard conversations, even when something needs to be said." },
   { p: 'P', t: "I sleep less than 7 hours most nights." },
   { p: 'S', t: "I chase what other people call success instead of what I believe matters." },
   { p: 'M', t: "I act like a different person depending on who I'm around." },
   { p: 'P', t: "I start a fitness plan and quit within a few weeks." },
   { p: 'S', t: "When life gets hard, I have nothing deeper to lean on." },
+  { p: 'B', t: "I don't have men around me who call me out when I'm off track." },
 ];
 
 const results = {
@@ -65,19 +70,28 @@ const results = {
       'Reach out to one man you respect and ask him to get coffee.',
     ],
   },
+  B: {
+    name: 'Brotherhood',
+    text: "You might be doing a lot right, but you're doing it alone. Most men are. No man builds alone, and the pillars don't stand without a foundation. For years I kept everything to myself. A men's group, honest friends and my marriage changed that, and they're a big part of why the rest of my life holds up now.",
+    steps: [
+      'Text one friend today and set a time to get together this week.',
+      'Tell one person you trust one real thing you are dealing with.',
+      'Find one men\'s group, church group or gym class and show up once.',
+    ],
+  },
 };
 const scale = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'];
 const applyHref = APPLY_URL || SOCIAL.instagram;
 ---
 <Base
   title="The Authentic Man Assessment | Pillar Method Coaching"
-  description="A free 6-minute quiz for men: which of your 3 pillars (Physical, Mental, Spiritual) is holding you back? 30 honest statements, one result, three first steps."
+  description="A free 7-minute quiz for men: which part of your life is holding you back: Physical, Mental, Spiritual or Brotherhood? 35 honest statements, one result, three first steps."
 >
   <section class="quiz wrap" aria-labelledby="quiz-title">
     <div id="quiz-start" class="quiz-start">
-      <p class="eyebrow">Free quiz · about 6 minutes</p>
+      <p class="eyebrow">Free quiz · about 7 minutes</p>
       <h1 id="quiz-title">The Authentic Man Assessment</h1>
-      <p class="lead">Which of your 3 pillars is holding you back: Physical, Mental or Spiritual? 30 statements, one result, and three first steps you can take this week.</p>
+      <p class="lead">Which part is holding you back: one of your 3 pillars (Physical, Mental, Spiritual) or the foundation under them, Brotherhood? 35 statements, one result, and three first steps you can take this week.</p>
       <p class="quiz-intro">Answer honestly. Nobody sees this but you. For each one, how often is it true for you, from 1 (never) to 5 (always)?</p>
       <button id="quiz-begin" class="btn btn-primary" type="button" hidden>Start the quiz</button>
       <noscript><p class="note">The quiz needs JavaScript turned on in your browser to work out your result.</p></noscript>
@@ -108,7 +122,7 @@ const applyHref = APPLY_URL || SOCIAL.instagram;
       <ol id="result-steps"></ol>
 
       <div class="quiz-invite">
-        <h3>Want help with all three?</h3>
+        <h3>Want help with all of it?</h3>
         <p>I'm taking {OFFER.spots} founding clients for my {OFFER.weeks}-week coaching program.</p>
         <a class="btn btn-primary" href={applyHref}>Apply for a founding spot</a>
       </div>
@@ -149,11 +163,14 @@ const applyHref = APPLY_URL || SOCIAL.instagram;
     };
 
     const finish = () => {
-      const totals: Record<string, number> = { M: 0, P: 0, S: 0 };
-      qs.forEach((q, n) => { totals[q.p] += answers[n]; });
-      // Highest score = biggest struggle. Ties go Mental, then Physical, then Spiritual.
-      const order = ['M', 'P', 'S'];
-      const top = order.reduce((best, k) => (totals[k] > totals[best] ? k : best), 'M');
+      const totals: Record<string, number> = { M: 0, P: 0, S: 0, B: 0 };
+      const counts: Record<string, number> = { M: 0, P: 0, S: 0, B: 0 };
+      qs.forEach((q, n) => { totals[q.p] += answers[n]; counts[q.p] += 1; });
+      // Compare averages (Brotherhood has fewer statements). Highest = biggest struggle.
+      // Ties go Mental, then Physical, then Spiritual, then Brotherhood.
+      const avg = (k: string) => totals[k] / counts[k];
+      const order = ['M', 'P', 'S', 'B'];
+      const top = order.reduce((best, k) => (avg(k) > avg(best) ? k : best), 'M');
       const r = res[top];
       $('result-title').textContent = `${r.name} is holding you back`;
       $('result-text').textContent = r.text;
@@ -163,8 +180,8 @@ const applyHref = APPLY_URL || SOCIAL.instagram;
       order.forEach((k) => {
         const row = document.createElement('div');
         row.className = 'quiz-barrow' + (k === top ? ' is-top' : '');
-        const pct = ((totals[k] - 10) / 40) * 100;
-        row.innerHTML = `<span class="lbl">${res[k].name}</span><span class="track"><span class="fill" style="width:${Math.max(pct, 2)}%"></span></span><span class="num">${totals[k]}/50</span>`;
+        const pct = ((avg(k) - 1) / 4) * 100;
+        row.innerHTML = `<span class="lbl">${res[k].name}</span><span class="track"><span class="fill" style="width:${Math.max(pct, 2)}%"></span></span><span class="num">${Math.round(pct)}%</span>`;
         $('result-bars').appendChild(row);
       });
       run.hidden = true;

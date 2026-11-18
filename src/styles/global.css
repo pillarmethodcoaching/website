@@ -95,7 +95,7 @@ p { margin: 0; }
 .quiz-result p, .quiz-result li { color: var(--muted); }
 .quiz-result ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 8px; }
 .quiz-bars { display: flex; flex-direction: column; gap: 10px; background: var(--ink-2); padding: 18px 20px; }
-.quiz-barrow { display: grid; grid-template-columns: 92px 1fr 56px; gap: 12px; align-items: center; font-size: 15px; }
+.quiz-barrow { display: grid; grid-template-columns: 116px 1fr 44px; gap: 12px; align-items: center; font-size: 15px; }
 .quiz-barrow .lbl { font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
 .quiz-barrow .track { height: 12px; background: #3A342E; }
 .quiz-barrow .fill { display: block; height: 100%; background: var(--muted-2); }
